@@ -1,0 +1,77 @@
+<div id="addProduct">
+     <md-toolbar class="md-theme-light">
+                            <h2 class="md-toolbar-tools">
+                                <span>// FormCaption //</span>
+
+                            </h2>
+      </md-toolbar>
+    <section layout="row" class="md-padding" >
+        <form name="addProductForm" novalidate>
+                                <div layout-gt-xs="row">
+                                    <md-input-container class="md-block" flex-gt-xs>
+                                        <label> Product Code </label>
+                                        <input type="text" ng-model="Product.ProductCode">
+                                    </md-input-container>
+                                    <md-input-container>
+                                          <label>Category</label>
+                                          <md-select ng-model="Product.CategoryID">
+                                            <md-option ng-repeat="item in CategoryList" ng-value="item.id">
+                                              // item.CategoryName //
+                                            </md-option>
+                                          </md-select>
+                                    </md-input-container>
+                                </div>
+                                <div layout-gt-sm="row">
+                                    <md-input-container class="md-block" flex-gt-sm>
+                                        <label>Product Name :</label>
+                                        <input name="ProductName" ng-model="Product.ProductName" required>
+                                    </md-input-container>
+                                </div>
+                                <div layout-gt-sm="row">
+
+                                    <md-input-container class="md-block" flex-gt-sm>
+                                        <label>HsnSacCode :</label>
+                                        <input ng-model="Product.HsnSacCode" required>
+                                    </md-input-container>
+                                    <md-input-container class="md-block" flex-gt-sm>
+                                        <label>Units : </label>
+                                        <input md-maxlength="30" ng-model="Product.Units" required>
+                                    </md-input-container>
+                                </div>
+                                <div layout-gt-sm="row">
+                                    <md-input-container class="md-block" flex-gt-sm>
+                                        <label>Size :</label>
+                                        <input ng-model="Product.Size" required>
+                                    </md-input-container>
+                                    <md-input-container class="md-block" flex-gt-sm>
+                                        <label>MoQ :</label>
+                                        <input ng-model="Product.MoQ" required>
+                                    </md-input-container>
+                                    <md-input-container class="md-block" flex-gt-sm>
+                                        <label>Color :</label>
+                                        <input ng-model="Product.Color" required>
+                                    </md-input-container>
+
+                                </div>
+                                <div layout-gt-sm="row">
+                                    <md-input-container class="md-block" flex-gt-sm>
+                                        <label>Description :</label>
+                                        <input type="text" ng-model="Product.Description" >
+                                    </md-input-container>
+
+                                </div>
+                                <div layout-gt-sm ="row">
+                                    <input type="file" ng-file-select="onFileSelect($files)" ng-model="Product.Image">
+                                     <img ng-src="// Product.Image //" style="max-height: 150px; max-width: 150px;" />
+                                </div>
+
+            <div layout-gt-sm="row">
+             <md-button  class="md-raised md-primary" ng-click="SaveOrUpdateProduct();"
+                                    ng-disabled="addProductForm.$dirty && addProductForm.$invalid"> // SAVE_UPDATE_FLAG // </md-button>
+            </div>
+
+
+        </form>
+
+      </section>
+</div>

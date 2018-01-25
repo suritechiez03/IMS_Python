@@ -1,0 +1,16 @@
+ <md-toolbar class="md-hue-2" md-whiteframe="4"  >
+                    <div class="md-toolbar-tools" >
+                        <md-button class="md-icon-button" aria-label="Menu Button" hide-gt-md ng-click="openLeftMenu();">
+                            <md-icon md-svg-icon="/static/img/menu.f1d75e5f.svg" aria-label="Menu Icon"> </md-icon>
+                        </md-button>
+                        <h2>
+                            <span style="font-size:18px"><p>{{ request.session.STORE_NAME }}<br><span style="font-size:10px"><i>{{ request.session.STORE_ADDRESS}}</i></span></p></span>
+                        </h2>
+                        <span flex></span>
+                        {% if request.user.is_authenticated %}
+                        <span aria-label="Menu Icon" ng-click="logOut()" > welcome : {{ user.get_username }}</span>
+                        {% else %}
+                        <span aria-label="Menu Icon"><a ng-href="/mod_auth/accounts/login/" > Login </a></span>
+                        {% endif %}
+                    </div>
+ </md-toolbar>

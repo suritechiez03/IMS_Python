@@ -1,0 +1,54 @@
+<div id="addProductCategory">
+     <md-toolbar class="md-theme-light">
+                            <h2 class="md-toolbar-tools">
+                                <span>// FormCategoryCaption //</span>
+
+                            </h2>
+      </md-toolbar>
+    <section layout="row" class="md-padding" >
+        <md-card>
+        <form name="addProductCategoryForm" novalidate>
+                                <div layout-gt-xs="row">
+                                    <md-input-container class="md-block" flex-gt-xs>
+                                        <label> Category Name  </label>
+                                        <input type="text" ng-model="ProductCategory.CategoryName">
+                                    </md-input-container>
+                                    <md-input-container class="md-block" flex-gt-sm>
+                                        <label>Description :</label>
+                                        <input name="Description" ng-model="ProductCategory.Description" required>
+                                    </md-input-container>
+                                </div>
+            <div layout="row">
+             <md-button  class="md-raised md-primary" ng-click="SaveOrUpdateCategory();"
+                                    ng-disabled="addProductCategoryForm.$dirty && addProductCategoryForm.$invalid"> // SAVE_UPDATE_FLAG // </md-button>
+            </div>
+
+
+        </form>
+        </md-card>
+      </section>
+      <section>
+          <md-card>
+        <div id="categorytable">
+          <md-table-container>
+              <table md-table md-row-select ng-model="selectedcategory">
+                  <thead md-head>
+                  <tr md-row>
+                    <th></th>
+                    <th md-column md-order-by="nameToLower">Category Name</th>
+                    <th md-column md-order-by="nameToLower">Description</th>
+                  </tr>
+                  </thead>
+                  <tbody md-body>
+                  <tr md-row ng-repeat="item in CategoryList">
+                      <td md-cell><md-button class="md-primary" ng-click="edit_category(item)">EDIT</md-button></td>
+                      <td md-cell>// item.CategoryName //</td>
+                      <td md-cell>// item.Description //</td>
+                  </tr>
+                  </tbody>
+              </table>
+          </md-table-container>
+          </div>
+          </md-card>
+      </section>
+</div>

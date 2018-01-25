@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block content %}
+<md-content flex>
+<div class="md-padding" layout-xs="column" layout="row" layout-align="center center">
+ <md-card flex>
+{% if form.errors %}
+<p>Your username and password didn't match. Please try again.</p>
+{% endif %}
+
+{% if next %}
+    {% if user.is_authenticated %}
+    <p>Your account doesn't have access to this page. To proceed,
+    please login with an account that has access.</p>
+    {% else %}
+    <p>Please login to see this page.</p>
+    {% endif %}
+{% endif %}
+
+<form method="post" action="{% url 'login' %}">
+{% csrf_token %}
+<section>
+    <h3>Log In</h3>
+<div layout="column">
+
+  <md-input-container>{{ form.username.label_tag }}
+      {{ form.username }}</md-input-container>
+
+
+    <md-input-container>{{ form.password.label_tag }} {{ form.password }}</md-input-container>
+</div>
+
+
+<div>
+    <md-button type="submit" class="md-primary-raised" value="login" > login</md-button>
+  <input type="hidden" name="next" value="{{ next }}" />
+</div>
+    </section>
+</form>
+
+{# Assumes you setup the password_reset view in your URLconf #}
+<p><a href="{% url 'password_reset' %}">Lost password?</a></p>
+</md-card>
+
+</div>
+</md-content>
+{% endblock %}

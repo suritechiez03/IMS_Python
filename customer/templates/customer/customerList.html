@@ -1,0 +1,47 @@
+<div id="customerList">
+<md-toolbar class="md-theme-light">
+                            <h2 class="md-toolbar-tools">
+                                <span>Customer List</span>
+                            </h2>
+</md-toolbar>
+ <div>
+     <md-input-container flex>
+         <label>Search Customer</label>
+         <input type="text" ng-model="customersearch"/>
+     </md-input-container>
+     <md-table-container>
+         <table md-table md-row-select multiple ng-model="selected">
+             <thead md-head>
+             <tr md-row>
+                 <th></th>
+                 <th md-column md-column md-order-by="nameToLower">Customer Number </th>
+                 <th md-column md-column md-order-by="nameToLower">Customer Name </th>
+                 <th md-column md-column md-order-by="nameToLower">Customer Type </th>
+                 <th md-column md-column md-order-by="nameToLower">Pan Number </th>
+                 <th md-column md-column md-order-by="nameToLower">Cst Number </th>
+                 <th md-column md-column md-order-by="nameToLower">Gst Number </th>
+                 <th md-column md-column md-order-by="nameToLower">WebSite </th>
+                 <th md-column md-column md-order-by="nameToLower">Email </th>
+                 <th md-column md-column md-order-by="nameToLower">Phone Number </th>
+                 <th md-column md-column md-order-by="nameToLower">Address </th>
+             </tr>
+             </thead>
+             <tbody md-body>
+             <tr md-row ng-repeat="item in CustomerList | filter : customersearch">
+                 <td md-cell><md-button class="md-primary md-raised" ng-click="editCustomer(item)"> Edit</md-button></td>
+                 <td md-cell>// item.CustomerNumber //</td>
+                 <td md-cell>// item.CustomerName //</td>
+                 <td md-cell>// item.CustomerType //</td>
+                 <td md-cell>// item.PanNumber //</td>
+                 <td md-cell>// item.CstNumber //</td>
+                 <td md-cell>// item.GstNumber //</td>
+                 <td md-cell>// item.customeraddress__WebSite //</td>
+                 <td md-cell>// item.customeraddress__Email //</td>
+                 <td md-cell>// item.customeraddress__PhoneNumber //</td>
+                 <td md-cell>// item.customeraddress__Address //</td>
+             </tr>
+             </tbody>
+         </table>
+     </md-table-container>
+ </div>
+</div>

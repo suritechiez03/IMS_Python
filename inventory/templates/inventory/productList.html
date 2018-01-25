@@ -1,0 +1,49 @@
+<div id="productList">
+     <md-toolbar class="md-theme-light">
+                            <h2 class="md-toolbar-tools">
+                                <span> Product List </span>
+
+                            </h2>
+      </md-toolbar>
+ <section>
+          <md-content flex>
+              <md-card>
+          <div id="categorytable">
+          <md-table-container>
+              <table md-table md-row-select ng-model="selectedproduct">
+                  <thead md-head>
+                  <tr md-row>
+                    <th></th>
+                    <th md-column md-order-by="ProductCode">Product Code</th>
+                    <th md-column md-order-by="ProductName">Product Name</th>
+                    <th md-column md-order-by="CategoryCode">Category</th>
+                    <th md-column md-order-by="Description">Description</th>
+                    <th md-column md-order-by="Units">Units</th>
+                    <th md-column md-order-by="MoQ">MoQ</th>
+                    <th md-column md-order-by="Color">Color</th>
+                    <th md-column md-order-by="HsnSacCode">HsnSacCode</th>
+                    <th md-column >Image</th>
+                  </tr>
+                  </thead>
+                  <tbody md-body>
+                  <tr md-row ng-repeat="item in ProductList">
+                      <td md-cell><md-button class="md-primary md-raised" ng-click="edit(item)"> EDIT </md-button></td>
+                      <td md-cell>// item.ProductCode //</td>
+                      <td md-cell>// item.ProductName //</td>
+                      <td md-cell>// item.CategoryCode //</td>
+                      <td md-cell>// item.Description //</td>
+                      <td md-cell>// item.Units //</td>
+                      <td md-cell>// item.MoQ //</td>
+                      <td md-cell>// item.Color //</td>
+                      <td md-cell>// item.HsnSacCode //</td>
+                      <td md-cell><img ng-src="// item.Image //" style="max-height: 35px; max-width: 35px;" /></td>
+                  </tr>
+                  </tbody>
+              </table>
+          </md-table-container>
+
+          </div>
+              </md-card>
+          </md-content>
+      </section>
+</div>

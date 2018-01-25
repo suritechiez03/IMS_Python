@@ -1,0 +1,87 @@
+<div id="addCustomer">
+     <md-toolbar class="md-theme-light">
+                            <h2 class="md-toolbar-tools">
+                                <span>// FormCaption //</span>
+
+                            </h2>
+      </md-toolbar>
+      <section layout="row" class="md-padding"   >
+        <form name="addCustomerForm" novalidate>
+                                <div layout-gt-xs="row">
+                                    <md-input-container class="md-block" ng-if="SAVE_UPDATE_FLAG =='UPDATE'" flex-gt-xs>
+                                        <label> Customers Number </label>
+                                        <input type="text" ng-model="Customer.CustomerNumber" disabled>
+                                    </md-input-container>
+                                    <md-input-container>
+                                          <label>Customer Type</label>
+                                          <md-select ng-model="Customer.CustomerType">
+                                            <md-option><em>None</em></md-option>
+                                            <md-option ng-repeat="item in CustomerTypeList" ng-value="item">
+                                              // item //
+                                            </md-option>
+                                          </md-select>
+                                    </md-input-container>
+                                </div>
+                                <div layout-gt-sm="row">
+                                    <md-input-container class="md-block" flex-gt-sm>
+                                        <label>Customer Name :</label>
+                                        <input name="CustomerName" ng-model="Customer.CustomerName" required>
+                                    </md-input-container>
+                                </div>
+                                <div layout-gt-sm="row">
+
+                                    <md-input-container class="md-block" flex-gt-sm>
+                                        <label>Company Website Addres :</label>
+                                        <input ng-model="Customer.CompanyWebsite" required>
+                                    </md-input-container>
+                                    <md-input-container class="md-block" flex-gt-sm>
+                                        <label>Company Email ID : </label>
+                                        <input md-maxlength="30" ng-model="Customer.CompanyEmail" required>
+                                    </md-input-container>
+                                </div>
+                                <div layout-gt-sm="row">
+                                    <md-input-container class="md-block" flex-gt-sm>
+                                        <label>Tin Number :</label>
+                                        <input ng-model="Customer.TinNumber" required>
+                                    </md-input-container>
+                                    <md-input-container class="md-block" flex-gt-sm>
+                                        <label>CST Number :</label>
+                                        <input ng-model="Customer.CstNumber" required>
+                                    </md-input-container>
+                                    <md-input-container class="md-block" flex-gt-sm>
+                                        <label>GST Number :</label>
+                                        <input ng-model="Customer.GstNumber" required>
+                                    </md-input-container>
+                                    <md-input-container class="md-block" flex-gt-sm>
+                                        <label>PAN Number :</label>
+                                        <input ng-model="Customer.PanNumber" required>
+                                    </md-input-container>
+                                </div>
+                                <div layout-gt-sm="row">
+                                    <md-input-container class="md-block" flex-gt-sm>
+                                        <label>Vat and Comodity Certificate :</label>
+                                        <!--<input type="file" ng-model="Customer.CompanyPANNumber" disabled>-->
+                                    </md-input-container>
+                                </div>
+                                <div layout-gt-sm="row">
+                                    <md-input-container class="md-block" flex-gt-sm>
+                                        <label>Address :</label>
+                                        <input ng-model="Customer.CompanyAddress" md-maxlength="250" required>
+                                    </md-input-container>
+                                </div>
+                                <div layout-gt-sm="row">
+                                    <md-input-container class="md-block" flex-gt-sm>
+                                        <label>Office Number :</label>
+                                        <input ng-model="Customer.PhoneNumber" required>
+                                    </md-input-container>
+                                </div>
+            <div layout-gt-sm="row">
+             <md-button  class="md-raised md-primary" ng-click="SaveOrUpdate();"
+                                    ng-disabled="addCustomerForm.$dirty && addDealerForm.$invalid"> // SAVE_UPDATE_FLAG // </md-button>
+            </div>
+
+
+        </form>
+
+      </section>
+</div>
