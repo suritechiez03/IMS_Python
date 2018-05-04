@@ -16,7 +16,7 @@ imsappctrl.factory('alertService',
                             .title(title)
                             .textContent(content)
                             .ariaLabel('Lucky day')
-                            .targetEvent(ev)
+                            .targetEvent(null)
                             .ok(okButtontext)
                             .cancel(cancelButtonText);
 
@@ -44,7 +44,22 @@ imsappctrl.factory('alertService',
                             .targetEvent(null)
                             );
                 };
+                service.ShowAlertWait = function (title, content, okButtontext, callback) {
+                    var confirm = $mdDialog.confirm()
+                            .title(title)
+                            .textContent(content)
+                            .ariaLabel('Lucky day')
+                            .targetEvent(null)
+                            .ok(okButtontext)
 
+
+                    $mdDialog.show(confirm).then(function () {
+                        //$scope.status = 'You decided to get rid of your debt.';
+                        callback("OK");
+                        console.log("Ok")
+
+                    } );
+                };
                 return service;
             }
         ]

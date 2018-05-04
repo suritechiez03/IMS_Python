@@ -29,7 +29,7 @@
 </style>
     </head>
 
-    <body data-ng-init="init()"  ng-cloak ng-controller="baseController"  >
+    <body data-ng-init="init()"  ng-cloak ng-controller="baseController">
 
 
         <div id="header" style="">
@@ -43,7 +43,7 @@
                 {% include "sidebar.html" %}
         {% endif %}
         <md-content flex>
-        <div id="container" style="">
+        <div id="container" style=" ">
             {% csrf_token %}
             <!-- views will be injected here -->
             {% block content %}
@@ -58,6 +58,7 @@
 
 
     </body>
+
 
         <!-- Angular Material requires Angular.libjs Libraries -->
         <script src="/static/libjs/angular.min.js"></script>
@@ -78,11 +79,16 @@
         <script src="/static/js/service/alertService.js"></script>
         <script src="/static/js/service/customerService.js"></script>
         <script src="/static/js/service/inventoryService.js"></script>
+        <script src="/static/js/service/ordermgmtService.js"></script>
+        <script src="/static/js/service/billingService.js"></script>
 
         <script src="/static/js/controller/baseController.js"></script>
         <script src="/static/js/controller/menuController.js"></script>
         <script src="/static/js/controller/customerController.js"></script>
         <script src="/static/js/controller/inventoryController.js"></script>
+        <script src="/static/js/controller/ordermgmtController.js"></script>
+        <script src="/static/js/controller/billingController.js"></script>
+        <script src="/static/js/controller/transactionController.js"></script>
 
 
 </html>

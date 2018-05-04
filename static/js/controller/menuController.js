@@ -20,12 +20,12 @@ imsappctrl.controller('menuController', function ($scope) {
      $scope.Menu.push({
 //      face: imagePath,
         MenuItem: "Manage Order",
-        Link: "home.manageorder"
+        Link: "/order"
     });
     $scope.Menu.push({
 //      face: imagePath,
         MenuItem: "Invoice/Billing",
-        Link: "home.manageinvoice"
+        Link: "/billing"
     });
 //    }
 });

@@ -1,0 +1,173 @@
+<div id="frmInvoice" >
+     <md-toolbar class="md-theme-light">
+                            <h2 class="md-toolbar-tools">
+                                <span>// ManageInvoice.InvoiceType //</span>
+
+                            </h2>
+      </md-toolbar>
+      <section>
+        <form name="frmInvoice" novalidate>
+
+          <md-card flex style="padding-left: 10;padding-right: 10">
+              <div layout="row">
+                            <md-input-container class="md-block" flex-gt-sm>
+                                <label>Invoice Type </label>
+                                <md-select ng-model="ManageInvoice.InvoiceType" ng-change="get_customer_list();" required>
+                                    <md-option ng-repeat="option in InvoiceTypeList" ng-value="option.abbrev">
+                                        <span style="color: blue">// option.abbrev // </span>
+                                    </md-option>
+                                </md-select>
+                            </md-input-container>
+                            <md-input-container class="md-block" flex-gt-sm>
+                                <label>Customer Number  </label>
+                                <md-select ng-model="ManageInvoice.Customer" ng-change="get_order_list()" required>
+                                    <md-option ng-repeat="option in CustomerList" ng-value="option">
+                                        <span style="color: blue">// option.CustomerNumber // : // option.CustomerName //</span>
+                                    </md-option>
+                                </md-select>
+                            </md-input-container>
+                            <md-input-container class="md-block" flex-gt-sm >
+                                <input type="Text" ng-model="ManageInvoice.Customer.CustomerType" disabled/>
+                            </md-input-container>
+
+                            <md-input-container class="md-block" flex-gt-sm >
+                                    <label>  Order No : </label>
+                                    <md-select ng-model="ManageInvoice.ManageOrder"  required>
+                                        <md-option ng-repeat="option in OrderList" ng-value="option">
+                                            <span style="color: blue">// option.GeneratedOrderNumber //</span>
+                                        </md-option>
+                                    </md-select>
+                            </md-input-container>
+
+
+              </div>
+              <div flex-gt-xs="row">
+                    <label>Order Date : </label>
+                    <md-datepicker ng-model="ManageInvoice.ManageOrder.OrderDate" md-placeholder="Order date" valid required></md-datepicker>
+
+                    <label>Invoice Date : </label>
+                    <md-datepicker ng-model="ManageInvoice.Invoicedate" md-placeholder="Invoice date" valid required></md-datepicker>
+
+                    <label>Expected Delivery  Date : </label>
+                    <md-datepicker ng-model="ManageInvoice.ExpDeliveryDate" md-placeholder="Enter Date" ></md-datepicker>
+
+              </div>
+              <div layout="row">
+                   <md-input-container ng-show="ManageInvoice.InvoiceType =='Purchase Invoice'"  flex-gt-sm>
+
+                                <input ng-model="ManageInvoice.InvoiceNo"
+                                       placeholder="Invoice No#"
+                                       text="Invoice No#:"
+                                       ng-disabled="SaleInvoice"
+                                       required>
+                   </md-input-container>
+                   <md-input-container>
+                                <input ng-model="ManageInvoice.RepName"
+                                               placeholder="Rep Name">
+                   </md-input-container>
+                   <md-input-container>
+                                <input ng-model="ManageInvoice.StateCode"
+                                               placeholder="State Code">
+                   </md-input-container>
+              </div>
+          </md-card>
+          <md-button type="button" ng-click="showAddInvoiceDetails()"> Add Additional Details</md-button>
+          <md-button type="button" ng-click="showProduct(this)"> Add Product</md-button>
+          <div layout-gt-xs="row">
+
+          <md-card flex>
+          <md-table-container>
+          <table md-table    ng-model="selected">
+            <thead md-head>
+                <tr md-row>
+                    <th></th>
+                    <th md-column md-numeric>Product Name</th>
+                    <th md-column md-numeric>Quantity</th>
+                    <th md-column md-numeric>Unit Price</th>
+                    <th md-column md-numeric>Discount %</th>
+                    <th md-column md-numeric>GST %</th>
+                    <th md-column md-numeric>Total Price</th>
+                    <th md-column md-numeric ng-show="PurchaseInvoice">Margin %</th>
+                    <th md-column md-numeric ng-show="PurchaseInvoice">Margin Amt</th>
+                    <th md-column md-numeric ng-show="PurchaseInvoice">Dealer Price</th>
+                </tr>
+            </thead>
+            <tbody md-body>
+               <tr md-row ng-repeat="item in ManageInvoice.ManageOrder.OrderDetails">
+                     <td md-cell><md-button class="md-primary" ng-click="Remove($index)"> Remove </md-button></td>
+                     <td md-cell>(// item.ProductCode //)// item.ProductName //</td>
+                     <td md-cell>
+                       <input type="Number" placeholder="Quantity" style="width:60px" ng-model="item.orderQuantity" >
+                     </td>
+                     <td md-cell><input ng-model="ManageInvoice.ManageOrder.OrderDetails[$index].UnitPrice" type="number"  step="0.01" style="width:60px" ng-change="updateTotal(item);"></td>
+                     <td md-cell><input ng-model="ManageInvoice.ManageOrder.OrderDetails[$index].Discount" type="number"  step="0.1" style="width:40px" ng-change="updateTotal(item);"></td>
+                     <td md-cell >
+                        <input ng-model="ManageInvoice.ManageOrder.OrderDetails[$index].Tax" type="number"  step="0.01" style="width:60px"    ng-change="updateTotal(item);">
+
+                     </td>
+                     <td md-cell><b>//item.TotalAmount//</b> </td>
+                     <td md-cell ng-show="PurchaseInvoice"><input ng-model="ManageInvoice.ManageOrder.OrderDetails[$index].MarginPrecnt" type="number" style="width:40px" step="0.01"  ng-change="updateTotal(item);"></td>
+                     <td md-cell ng-show="PurchaseInvoice"><b>//item.MarginAmt//</b></td>
+                     <td md-cell ng-show="PurchaseInvoice"><b>//item.DealerPrice//</b></td>
+               </tr>
+            </tbody>
+          </table>
+          </md-table-container>
+
+          </md-card>
+
+
+          </div>
+
+        </form>
+
+        <md-card>
+             <md-card-title>
+                  <label> Gross Amount : // ManageInvoice.GrossAmount //</label>
+                  </md-card-title>
+            <md-card-content>
+
+
+                    <table md-table >
+                        <tbody md-body>
+                            <tr md-row ng-repeat="rowContent in DynamicTblGST">
+                                <td md-cell>// rowContent.type // @ </td>
+                                <td md-cell>// rowContent.taxrate // %</td>
+                                <td md-cell><span flex></span></td>
+                                <td md-cell>// rowContent.taxprice //</td>
+                            </tr>
+                            <tr md-row>
+                                <td md-cell>CrDr Note : </td>
+                                <td md-cell><span flex></span></td>
+                                <td md-cell> <label></label></td>
+                                <td md-cell><input ng-model="ManageInvoice.CrDrNote" type="number" string-to-number step="0.01" ng-change="CalcuateCharges();" ></td>
+                            </tr>
+                            <tr md-row>
+                                <td md-cell>Round Off : </td>
+                                <td md-cell><span flex></span></td>
+                                <td md-cell> <label></label></td>
+                                <td md-cell><input ng-model="ManageInvoice.RoundOff" type="number" string-to-number step="0.01" ng-change="CalcuateCharges();" ></td>
+                            </tr>
+                            <tr md-row>
+                                <td md-cell><h2>Total Amount  :</h2> </td>
+                                <td md-cell><span flex></span></td>
+                                <td md-cell> <label></label></td>
+                                <td md-cell><h2 style="color: brown"> <span id="currency-default">// ManageInvoice.FinalAmount| currency:"&#8377;" //</span></h2></td>
+                            </tr>
+                         </tbody>
+
+                    </table>
+
+            </md-card-content>
+            <md-card-actions layout="row" layout-align="end center">
+                <md-button class="md-raised md-primary"  ng-click="getPdf();" >Get Quotation</md-button>
+                <md-button  class="md-raised md-primary" ng-click="SubmitInvoice();">Confirm</md-button>
+            </md-card-actions>
+        </md-card>
+ {% include "billing/tmp_addinvoicedetails.html" %}
+ {% include "billing/tmp_products.html" %}
+
+ </section>
+
+
+</div>

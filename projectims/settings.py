@@ -39,7 +39,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'customer.apps.CustomerConfig',
     'mod_auth.apps.ModAuthConfig',
-    'inventory.apps.InventoryConfig'
+    'inventory.apps.InventoryConfig',
+    'ordermanagement.apps.OrderManagementConfig',
+    'billing.apps.BillingConfig'
 
 ]
 
@@ -120,7 +122,7 @@ LANGUAGE_CODE = 'en-us'
 
 #USE_L10N = True
 
-#USE_TZ = True
+USE_TZ = True
 
 
 # Static files (CSS, JavaScript, Images)
@@ -137,7 +139,7 @@ LOGIN_REDIRECT_URL = '/'
 
 USE_DJANGO_JQUERY = True
 
-TIME = 60
+TIME = 300
 
 SESSION_SERIALIZER = 'django.contrib.sessions.serializers.PickleSerializer'
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True

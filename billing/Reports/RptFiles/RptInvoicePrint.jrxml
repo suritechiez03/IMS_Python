@@ -1,0 +1,1162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.5.1.final using JasperReports Library version 6.5.1  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="RptInvoicePrint" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="20cde45e-151c-48cd-a3de-9d89b0360e6c">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="New Data Adapter "/>
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.property.dataset.dialog.DatasetDialog.sash.w1" value="647"/>
+	<property name="com.jaspersoft.studio.property.dataset.dialog.DatasetDialog.sash.w2" value="353"/>
+	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w1" value="481"/>
+	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w2" value="519"/>
+	<style name="Table_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Table_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Table_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<subDataset name="CompanyInfo" uuid="d32767ca-3feb-44d1-a955-847b1f64818a">
+		<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+		<property name="com.jaspersoft.studio.data.defaultdataadapter" value="New Data Adapter "/>
+		<queryString language="SQL">
+			<![CDATA[SELECT * FROM vwCompnayInfo]]>
+		</queryString>
+		<field name="BranchName" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.label" value="BranchName"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="vwCompnayInfo"/>
+		</field>
+		<field name="Address" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.label" value="Address"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="vwCompnayInfo"/>
+		</field>
+		<field name="PhoneNumber" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.label" value="PhoneNumber"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="vwCompnayInfo"/>
+		</field>
+		<field name="Email" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.label" value="Email"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="vwCompnayInfo"/>
+		</field>
+		<field name="GSTNo" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.label" value="GSTNo"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="vwCompnayInfo"/>
+		</field>
+	</subDataset>
+	<subDataset name="GstSummary" uuid="b4f6c7a2-c180-442d-a929-278c4c0def91">
+		<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+		<property name="com.jaspersoft.studio.data.defaultdataadapter" value="New Data Adapter "/>
+		<parameter name="InvoiceNO" class="java.lang.String"/>
+		<queryString>
+			<![CDATA[SELECT imsapp.`vwGstSummary`.`TaxPerProduct`,
+	imsapp.`vwGstSummary`.`TaxType`,
+	imsapp.`vwGstSummary`.`InvoiceNumber`,
+	SUM((imsapp.`vwGstSummary`.`TotalGST`/2)) as SGST,
+	SUM((imsapp.`vwGstSummary`.`TotalGST`/2)) as CGST,
+	SUM(imsapp.`vwGstSummary`.`TotalGST`) as TotalGST
+FROM imsapp.`vwGstSummary`
+Where imsapp.`vwGstSummary`.`InvoiceNumber`=   $P{InvoiceNO} 
+GROUP BY imsapp.`vwGstSummary`.`InvoiceNumber`,imsapp.`vwGstSummary`.`TaxPerProduct`]]>
+		</queryString>
+		<field name="TaxPerProduct" class="java.math.BigDecimal">
+			<property name="com.jaspersoft.studio.field.label" value="TaxPerProduct"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="ordermanagement_orderdetails"/>
+		</field>
+		<field name="TaxType" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.label" value="TaxType"/>
+		</field>
+		<field name="InvoiceNumber" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.label" value="InvoiceNumber"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="billing_invoicedetails"/>
+		</field>
+		<field name="SGST" class="java.math.BigDecimal">
+			<property name="com.jaspersoft.studio.field.label" value="SGST"/>
+		</field>
+		<field name="CGST" class="java.math.BigDecimal">
+			<property name="com.jaspersoft.studio.field.label" value="CGST"/>
+		</field>
+		<field name="TotalGST" class="java.math.BigDecimal">
+			<property name="com.jaspersoft.studio.field.label" value="TotalGST"/>
+		</field>
+		<variable name="Total_SGST" class="java.lang.Double" calculation="Sum">
+			<variableExpression><![CDATA[$F{SGST}]]></variableExpression>
+		</variable>
+		<variable name="Total_CGST" class="java.lang.Double" calculation="Sum">
+			<variableExpression><![CDATA[$F{CGST}]]></variableExpression>
+		</variable>
+		<variable name="Total_GST" class="java.lang.Double" calculation="Sum">
+			<variableExpression><![CDATA[$F{TotalGST}]]></variableExpression>
+		</variable>
+		<group name="Group1">
+			<groupExpression><![CDATA[$F{InvoiceNumber}]]></groupExpression>
+		</group>
+	</subDataset>
+	<parameter name="InvoiceNO" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT imsapp.`VwInvoiceDetails`.`BBranchName`,
+	imsapp.`VwInvoiceDetails`.`BAddress`,
+	imsapp.`VwInvoiceDetails`.`BState`,
+	imsapp.`VwInvoiceDetails`.`BCountry`,
+	imsapp.`VwInvoiceDetails`.`BIsMainBranch`,
+	imsapp.`VwInvoiceDetails`.`BSalesGL`,
+	imsapp.`VwInvoiceDetails`.`BEmail`,
+	imsapp.`VwInvoiceDetails`.`BGSTNo`,
+	imsapp.`VwInvoiceDetails`.`BPhoneNumber`,
+	imsapp.`VwInvoiceDetails`.`InvoiceNumber`,
+	imsapp.`VwInvoiceDetails`.`CustomerNumber`,
+	imsapp.`VwInvoiceDetails`.`CustomerName`,
+	imsapp.`VwInvoiceDetails`.`GstNumber`,
+	imsapp.`VwInvoiceDetails`.`Address`,
+	imsapp.`VwInvoiceDetails`.`Email`,
+	imsapp.`VwInvoiceDetails`.`PhoneNumber`,
+	imsapp.`VwInvoiceDetails`.`InvoiceDate`,
+	imsapp.`VwInvoiceDetails`.`InvoiceType`,
+	imsapp.`VwInvoiceDetails`.`PaymentDueDate`,
+	imsapp.`VwInvoiceDetails`.`StateCode`,
+	imsapp.`VwInvoiceDetails`.`RepName`,
+	imsapp.`VwInvoiceDetails`.`PaymentTerms`,
+	imsapp.`VwInvoiceDetails`.`FrieghtTerms`,
+	imsapp.`VwInvoiceDetails`.`DeliveryTerms`,
+	imsapp.`VwInvoiceDetails`.`Transporter`,
+	imsapp.`VwInvoiceDetails`.`TransportMode`,
+	imsapp.`VwInvoiceDetails`.`EsugamaNo`,
+	imsapp.`VwInvoiceDetails`.`Destination`,
+	imsapp.`VwInvoiceDetails`.`LRNoAndDate`,
+	imsapp.`VwInvoiceDetails`.`ExpectedDelivery`,
+	imsapp.`VwInvoiceDetails`.`NoOfPacks`,
+	imsapp.`VwInvoiceDetails`.`EnteredDate`,
+	imsapp.`VwInvoiceDetails`.`RoundOff`,
+	imsapp.`VwInvoiceDetails`.`EnteredBy`,
+	imsapp.`VwInvoiceDetails`.`BalanceAmount`,
+	imsapp.`VwInvoiceDetails`.`TransactionDate`,
+	imsapp.`VwInvoiceDetails`.`ITotalAmount`,
+	imsapp.`VwInvoiceDetails`.`ITaxAmount`,
+	imsapp.`VwInvoiceDetails`.`GrossWeight`,
+	imsapp.`VwInvoiceDetails`.`ProductName`,
+	imsapp.`VwInvoiceDetails`.`ProductCode`,
+	imsapp.`VwInvoiceDetails`.`Description`,
+	imsapp.`VwInvoiceDetails`.`HsnSacCode`,
+	imsapp.`VwInvoiceDetails`.`Units`,
+	imsapp.`VwInvoiceDetails`.`OrderQty`,
+	imsapp.`VwInvoiceDetails`.`CGST`,
+	imsapp.`VwInvoiceDetails`.`SGST`,
+	imsapp.`VwInvoiceDetails`.`DiscountAmt`,
+	imsapp.`VwInvoiceDetails`.`GrossAmount`,
+	imsapp.`VwInvoiceDetails`.`TaxPerProductAmt`,
+	imsapp.`VwInvoiceDetails`.`TaxPerProduct`,
+	imsapp.`VwInvoiceDetails`.`TotalAmount`,
+	imsapp.`VwInvoiceDetails`.`Discount`,
+	imsapp.`VwInvoiceDetails`.`UnitPrice`,
+	imsapp.`VwInvoiceDetails`.`Color`,
+	imsapp.`VwInvoiceDetails`.CrDrNote,
+	GrossAmount+((GrossAmount * TaxPerProduct)/100) as NetAmount
+FROM imsapp.`VwInvoiceDetails`
+Where InvoiceNumber=$P{InvoiceNO};]]>
+	</queryString>
+	<field name="BBranchName" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="BBranchName"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="VwInvoiceDetails"/>
+	</field>
+	<field name="BAddress" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="BAddress"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="VwInvoiceDetails"/>
+	</field>
+	<field name="BState" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="BState"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="VwInvoiceDetails"/>
+	</field>
+	<field name="BCountry" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="BCountry"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="VwInvoiceDetails"/>
+	</field>
+	<field name="BIsMainBranch" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="BIsMainBranch"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="VwInvoiceDetails"/>
+	</field>
+	<field name="BSalesGL" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="BSalesGL"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="VwInvoiceDetails"/>
+	</field>
+	<field name="BEmail" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="BEmail"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="VwInvoiceDetails"/>
+	</field>
+	<field name="BGSTNo" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="BGSTNo"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="VwInvoiceDetails"/>
+	</field>
+	<field name="BPhoneNumber" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="BPhoneNumber"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="VwInvoiceDetails"/>
+	</field>
+	<field name="InvoiceNumber" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="InvoiceNumber"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="VwInvoiceDetails"/>
+	</field>
+	<field name="CustomerNumber" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="CustomerNumber"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="VwInvoiceDetails"/>
+	</field>
+	<field name="CustomerName" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="CustomerName"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="VwInvoiceDetails"/>
+	</field>
+	<field name="GstNumber" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="GstNumber"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="VwInvoiceDetails"/>
+	</field>
+	<field name="Address" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="Address"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="VwInvoiceDetails"/>
+	</field>
+	<field name="Email" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="Email"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="VwInvoiceDetails"/>
+	</field>
+	<field name="PhoneNumber" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="PhoneNumber"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="VwInvoiceDetails"/>
+	</field>
+	<field name="InvoiceDate" class="java.sql.Timestamp">
+		<property name="com.jaspersoft.studio.field.label" value="InvoiceDate"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="VwInvoiceDetails"/>
+	</field>
+	<field name="InvoiceType" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="InvoiceType"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="VwInvoiceDetails"/>
+	</field>
+	<field name="PaymentDueDate" class="java.sql.Timestamp">
+		<property name="com.jaspersoft.studio.field.label" value="PaymentDueDate"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="VwInvoiceDetails"/>
+	</field>
+	<field name="StateCode" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="StateCode"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="VwInvoiceDetails"/>
+	</field>
+	<field name="RepName" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="RepName"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="VwInvoiceDetails"/>
+	</field>
+	<field name="PaymentTerms" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="PaymentTerms"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="VwInvoiceDetails"/>
+	</field>
+	<field name="FrieghtTerms" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="FrieghtTerms"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="VwInvoiceDetails"/>
+	</field>
+	<field name="DeliveryTerms" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="DeliveryTerms"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="VwInvoiceDetails"/>
+	</field>
+	<field name="Transporter" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="Transporter"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="VwInvoiceDetails"/>
+	</field>
+	<field name="TransportMode" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="TransportMode"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="VwInvoiceDetails"/>
+	</field>
+	<field name="EsugamaNo" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="EsugamaNo"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="VwInvoiceDetails"/>
+	</field>
+	<field name="Destination" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="Destination"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="VwInvoiceDetails"/>
+	</field>
+	<field name="LRNoAndDate" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="LRNoAndDate"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="VwInvoiceDetails"/>
+	</field>
+	<field name="ExpectedDelivery" class="java.sql.Timestamp">
+		<property name="com.jaspersoft.studio.field.label" value="ExpectedDelivery"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="VwInvoiceDetails"/>
+	</field>
+	<field name="NoOfPacks" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="NoOfPacks"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="VwInvoiceDetails"/>
+	</field>
+	<field name="EnteredDate" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="EnteredDate"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="VwInvoiceDetails"/>
+	</field>
+	<field name="RoundOff" class="java.lang.Double">
+		<property name="com.jaspersoft.studio.field.label" value="RoundOff"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="VwInvoiceDetails"/>
+	</field>
+	<field name="EnteredBy" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="EnteredBy"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="VwInvoiceDetails"/>
+	</field>
+	<field name="BalanceAmount" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="BalanceAmount"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="VwInvoiceDetails"/>
+	</field>
+	<field name="TransactionDate" class="java.sql.Timestamp">
+		<property name="com.jaspersoft.studio.field.label" value="TransactionDate"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="VwInvoiceDetails"/>
+	</field>
+	<field name="ITotalAmount" class="java.lang.Double">
+		<property name="com.jaspersoft.studio.field.label" value="ITotalAmount"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="VwInvoiceDetails"/>
+	</field>
+	<field name="ITaxAmount" class="java.lang.Double">
+		<property name="com.jaspersoft.studio.field.label" value="ITaxAmount"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="VwInvoiceDetails"/>
+	</field>
+	<field name="GrossWeight" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="GrossWeight"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="VwInvoiceDetails"/>
+	</field>
+	<field name="ProductName" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="ProductName"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="VwInvoiceDetails"/>
+	</field>
+	<field name="ProductCode" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="ProductCode"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="VwInvoiceDetails"/>
+	</field>
+	<field name="Description" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="Description"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="VwInvoiceDetails"/>
+	</field>
+	<field name="HsnSacCode" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="HsnSacCode"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="VwInvoiceDetails"/>
+	</field>
+	<field name="Units" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="Units"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="VwInvoiceDetails"/>
+	</field>
+	<field name="OrderQty" class="java.lang.Long">
+		<property name="com.jaspersoft.studio.field.label" value="OrderQty"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="VwInvoiceDetails"/>
+	</field>
+	<field name="CGST" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.label" value="CGST"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="VwInvoiceDetails"/>
+	</field>
+	<field name="SGST" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.label" value="SGST"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="VwInvoiceDetails"/>
+	</field>
+	<field name="DiscountAmt" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.label" value="DiscountAmt"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="VwInvoiceDetails"/>
+	</field>
+	<field name="GrossAmount" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.label" value="GrossAmount"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="VwInvoiceDetails"/>
+	</field>
+	<field name="TaxPerProductAmt" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.label" value="TaxPerProductAmt"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="VwInvoiceDetails"/>
+	</field>
+	<field name="TaxPerProduct" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.label" value="TaxPerProduct"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="VwInvoiceDetails"/>
+	</field>
+	<field name="TotalAmount" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.label" value="TotalAmount"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="VwInvoiceDetails"/>
+	</field>
+	<field name="Discount" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.label" value="Discount"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="VwInvoiceDetails"/>
+	</field>
+	<field name="UnitPrice" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.label" value="UnitPrice"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="VwInvoiceDetails"/>
+	</field>
+	<field name="Color" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="Color"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="VwInvoiceDetails"/>
+	</field>
+	<field name="CrDrNote" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.label" value="CrDrNote"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="VwInvoiceDetails"/>
+	</field>
+	<field name="NetAmount" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.label" value="NetAmount"/>
+	</field>
+	<variable name="Total_TaxPerProductAmt" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$F{TaxPerProductAmt}]]></variableExpression>
+	</variable>
+	<variable name="Total_DiscAmt" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$F{DiscountAmt}]]></variableExpression>
+	</variable>
+	<variable name="Total_Item_Count" class="java.lang.Integer" calculation="Count">
+		<variableExpression><![CDATA[$F{ProductCode}]]></variableExpression>
+	</variable>
+	<variable name="Total_Qty" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[$F{OrderQty}]]></variableExpression>
+	</variable>
+	<variable name="Total_NetAmount" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$F{NetAmount}]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="123" splitType="Stretch">
+			<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.FreeLayout"/>
+			<rectangle>
+				<reportElement x="-2" y="2" width="781" height="117" forecolor="#000000" uuid="c834ebfb-c456-477c-8cbd-389f13fa47b7"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="350" y="0" width="212" height="20" forecolor="#0C456E" uuid="ae91efba-ce67-4bed-b83d-363f1a1a8afb"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[GST INVOICE]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="1" y="0" width="349" height="20" uuid="f0246c4b-b2b1-4393-9ad3-a692f7044366"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{BBranchName}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="1" y="19" width="262" height="21" uuid="1b784c30-3529-42d1-a380-c52cbf4ea4e1"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{BAddress}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="1" y="40" width="110" height="20" uuid="aaf508d6-2893-475a-bb77-b1a981aebd87"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Serif" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Phone : " + $F{BPhoneNumber}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="112" y="40" width="150" height="20" uuid="27770156-4533-407b-9ddc-e6a057cbbcf0"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Serif" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{BEmail}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="61" width="261" height="19" uuid="a560fbe0-9e7d-450d-a059-ae9a5694b649"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Serif" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA["GSTIN : " + $F{BGSTNo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="312" y="19" width="220" height="20" uuid="c323d200-aad4-4a54-b936-2f40292d8671"/>
+				<textElement textAlignment="Center">
+					<font fontName="SansSerif" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Invoice No : "+$F{InvoiceNumber}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="262" y="40" width="170" height="20" uuid="00fb917b-d794-428f-ba54-b277f78ad86b"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Serif" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Invoice Date : " + DATEFORMAT($F{InvoiceDate},"dd-MMM-yyyy")]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="262" y="60" width="170" height="20" uuid="606b2115-f449-4cf5-a621-5cdfa6337216"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Serif" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Due Date : " + DATEFORMAT( $F{PaymentDueDate},"dd-MMM-yyyy")]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="0" y="99" width="211" height="20" uuid="f13f9c61-bc26-4435-9644-0509dc876e9f"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Serif" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Transporter : " + $F{Transporter}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="0" y="80" width="211" height="19" uuid="88165516-095b-4569-87fd-601dcaa26562"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Serif" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA["PaymentTerms : " + $F{PaymentTerms}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="213" y="80" width="159" height="19" uuid="79145a7f-0679-4e75-80d3-712f2e7429ef"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Serif" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA["LR.No & Date : " + $F{LRNoAndDate}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="213" y="99" width="159" height="20" uuid="ae89d580-bfee-4601-942d-03b965396fe9"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Serif" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Esugama NO. : "+ $F{EsugamaNo}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="372" y="80" width="100" height="19" uuid="192f65ec-c1bf-4dd0-b448-3af869478b5a"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Serif" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Packs : " + $F{NoOfPacks}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="372" y="99" width="100" height="20" uuid="9c345cba-604c-4718-a094-0fa441dd6cc2"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Serif" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Weight : " + $F{GrossWeight}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="432" y="40" width="130" height="19" uuid="421efea0-5d0b-4920-a56e-b6e0496caef2"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Serif" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Rep Name : " + $F{RepName}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="566" y="20" width="214" height="18" uuid="635e7bdb-c393-4dd7-b920-e1128abfeb9a"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{CustomerName}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="566" y="39" width="214" height="19" uuid="b1723bc8-cc0a-4aaa-b0f9-3ac31355d931"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Serif" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Address}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="566" y="3" width="100" height="16" uuid="0b19b2d4-c0d4-435b-95a9-4634a9eaf10c"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Party Details :]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="432" y="59" width="130" height="21" uuid="503fe53c-1ced-44bb-a46f-c78fd0190e7d"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Serif" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA["State Code : " + $F{StateCode}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="566" y="58" width="213" height="21" uuid="41aed2f4-ce8d-4cd2-b824-b719650dc2df"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Serif" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Phone : " + $F{PhoneNumber}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="566" y="79" width="214" height="19" uuid="efd5c5ea-18b9-476b-b5de-d8c0e6c14996"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Serif" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA["GSTIN : " + $F{GstNumber}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="25" splitType="Prevent">
+			<staticText>
+				<reportElement mode="Opaque" x="240" y="5" width="59" height="15" backcolor="#C9DAFF" uuid="016e8f4e-5c70-44f0-a021-02d6ef14b7ec"/>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Unit Price]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="5" width="180" height="15" backcolor="#C9DAFF" uuid="91025020-14df-4867-9670-2659decdf563"/>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Product Name & Desc]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="180" y="5" width="60" height="15" backcolor="#C9DAFF" uuid="299ecf42-bacd-498a-99bc-97074e0460ce"/>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Hsn Code]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="340" y="5" width="38" height="15" backcolor="#C9DAFF" uuid="bff24e72-fc65-47b1-b7f7-223132bcbdc4"/>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[DISC %]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="378" y="5" width="89" height="15" backcolor="#C9DAFF" uuid="6b62e89e-5deb-49a2-ac66-7b208214bf25"/>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Gross Amt]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="467" y="5" width="59" height="15" backcolor="#C9DAFF" uuid="0767b948-8a5a-4b9d-bf89-88cf52be3700"/>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[SGST]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="586" y="5" width="61" height="15" backcolor="#C9DAFF" uuid="2f88757b-9ef1-4021-a1ef-44eb06a71d0c"/>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[CGST]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="526" y="5" width="61" height="15" backcolor="#C9DAFF" uuid="22444468-c888-412a-8920-d022e46004e2"/>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[AMT]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="646" y="5" width="59" height="15" backcolor="#C9DAFF" uuid="b48b58b5-e21b-44cf-830d-1633e322c738"/>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[AMT]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="705" y="5" width="59" height="15" backcolor="#C9DAFF" uuid="0ccd0e3c-f79d-460b-ae97-cae4ee9d0a61"/>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[NET]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="299" y="5" width="41" height="15" backcolor="#C9DAFF" uuid="43eff0ae-d3b3-4cb0-bb6c-ffd69262fa81"/>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Qty]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<detail>
+		<band height="18" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="180" height="16" uuid="3d78af1c-884e-4450-9118-c444f3ce9d4a"/>
+				<box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0">
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{ProductName} + " (" + $F{ProductCode} + ")"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="180" y="0" width="60" height="16" uuid="d2e0dc22-d4ba-4069-8dd2-20bebd33b5e2"/>
+				<box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0">
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{HsnSacCode}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement x="240" y="0" width="60" height="16" uuid="9a5fb7d7-11f0-4d81-bac7-56e35cf9bfb5"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{UnitPrice}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="340" y="0" width="38" height="16" uuid="56c0ff52-fc32-4b2a-b67e-aa71f6aa0877"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Discount}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement x="378" y="1" width="89" height="15" uuid="748ad951-4888-4064-b730-804ef474333f"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{GrossAmount}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00#;(#,##0.00#)">
+				<reportElement x="467" y="0" width="59" height="16" uuid="30d1d030-e608-4552-8b8f-49929aef9942"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{SGST}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00#;(#,##0.00#)">
+				<reportElement x="587" y="1" width="60" height="15" uuid="3ae3e49e-94a4-4d3b-ae88-41a44cfd587c"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{CGST}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement x="526" y="0" width="60" height="16" uuid="0b3ded60-bc87-4e46-8284-356e8c5e208c"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TaxPerProductAmt}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement x="646" y="0" width="59" height="16" uuid="6c9578ae-6118-4ccf-9f3f-41362c87132d"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TaxPerProductAmt}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement x="705" y="0" width="59" height="16" uuid="54382962-262b-4241-82ec-af72295eecfb"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{NetAmount}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.###;(#,##0.###)">
+				<reportElement x="300" y="0" width="40" height="16" uuid="6ea17e93-ef33-411f-931b-967de8c0befb"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{OrderQty}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="13">
+			<textField>
+				<reportElement x="378" y="0" width="81" height="13" uuid="27aad2e8-2986-40e5-ba1c-d264c507638f"/>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="MMMMM dd, yyyy">
+				<reportElement x="0" y="0" width="100" height="13" uuid="3e8eafc5-9447-42c6-bc2b-713f8edc9277"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="258" splitType="Stretch">
+			<rectangle>
+				<reportElement key=" " x="-2" y="152" width="781" height="106" uuid="2f98a9fa-7e29-48a8-81e2-6be6f1e06933"/>
+			</rectangle>
+			<componentElement>
+				<reportElement stretchType="RelativeToBandHeight" x="1" y="4" width="417" height="40" uuid="01d6a61a-e508-4f0d-8b29-1f88fe714808">
+					<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.VerticalRowLayout"/>
+					<property name="com.jaspersoft.studio.table.style.table_header" value="Table_TH"/>
+					<property name="com.jaspersoft.studio.table.style.column_header" value="Table_CH"/>
+					<property name="com.jaspersoft.studio.table.style.detail" value="Table_TD"/>
+					<property name="com.jaspersoft.studio.components.autoresize.next" value="true"/>
+				</reportElement>
+				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+					<datasetRun subDataset="GstSummary" uuid="3fe109fe-bedd-419a-9345-824014b5a0e0">
+						<datasetParameter name="InvoiceNO">
+							<datasetParameterExpression><![CDATA[$P{InvoiceNO}]]></datasetParameterExpression>
+						</datasetParameter>
+						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					</datasetRun>
+					<jr:column width="100" uuid="b76bec52-852c-4f1d-9297-78f709a175b7">
+						<property name="com.jaspersoft.studio.components.table.model.column.name" value="Column1"/>
+						<jr:groupFooter groupName="Group1">
+							<jr:cell style="Table_CH" height="22" rowSpan="1">
+								<staticText>
+									<reportElement x="0" y="0" width="100" height="22" uuid="4a9cea07-0089-4c44-940b-f041ef5aee04"/>
+									<textElement textAlignment="Center" verticalAlignment="Middle">
+										<font fontName="SansSerif" size="10" isBold="true"/>
+									</textElement>
+									<text><![CDATA[Total GST]]></text>
+								</staticText>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:columnHeader style="Table_CH" height="20" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="100" height="20" uuid="3e418c13-84f6-4137-bf6c-f04300f968a2"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="SansSerif" size="9" isBold="true"/>
+								</textElement>
+								<text><![CDATA[GST Summary]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="Table_TD" height="18">
+							<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+							<textField>
+								<reportElement x="0" y="0" width="100" height="18" uuid="692eb37e-3f3d-4b3b-b0f9-9238b87d188d"/>
+								<textElement verticalAlignment="Middle">
+									<font fontName="SansSerif" size="9"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{TaxType}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="40" uuid="58fc473c-dd06-40c0-be38-b4c4e318d190">
+						<property name="com.jaspersoft.studio.components.table.model.column.name" value="Column2"/>
+						<jr:groupFooter groupName="Group1">
+							<jr:cell style="Table_CH" height="22" rowSpan="1"/>
+						</jr:groupFooter>
+						<jr:columnHeader style="Table_CH" height="20" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="40" height="20" uuid="2bc51ec8-146b-42f6-aec9-089ed68360a9"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="SansSerif" size="9"/>
+								</textElement>
+								<text><![CDATA[GST %]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="Table_TD" height="18">
+							<textField pattern="#,##0.00#;(#,##0.00#)">
+								<reportElement x="0" y="0" width="40" height="18" uuid="91ecf906-7103-40bd-899f-746a53369bd9"/>
+								<textElement textAlignment="Right" verticalAlignment="Middle">
+									<font fontName="SansSerif" size="9"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{TaxPerProduct}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="80" uuid="d897312f-c16f-4734-ad08-4c9be1aa4669">
+						<property name="com.jaspersoft.studio.components.table.model.column.name" value="Column3"/>
+						<jr:groupFooter groupName="Group1">
+							<jr:cell style="Table_CH" height="22" rowSpan="1">
+								<textField pattern="#,##0.00">
+									<reportElement x="0" y="0" width="80" height="22" uuid="06c121ab-ac2c-438b-9e12-5b14f85e5b8f"/>
+									<textElement textAlignment="Right" verticalAlignment="Middle">
+										<font fontName="SansSerif" size="9"/>
+									</textElement>
+									<textFieldExpression><![CDATA[$V{Total_SGST}]]></textFieldExpression>
+								</textField>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:columnHeader style="Table_CH" height="20" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="80" height="20" uuid="8b2cfec7-d209-48d2-a541-abbc531f09f0"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="SansSerif" size="9"/>
+								</textElement>
+								<text><![CDATA[SGST]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="Table_TD" height="18">
+							<textField pattern="#,##0.00">
+								<reportElement x="0" y="0" width="80" height="18" uuid="2434b1dd-ab6f-4f6c-9909-dfcae56cee34"/>
+								<textElement textAlignment="Right" verticalAlignment="Middle">
+									<font fontName="SansSerif" size="9"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{SGST}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="70" uuid="f0192943-a648-4618-8f6b-1df2a2926b64">
+						<property name="com.jaspersoft.studio.components.table.model.column.name" value="Column4"/>
+						<jr:groupFooter groupName="Group1">
+							<jr:cell style="Table_CH" height="22" rowSpan="1">
+								<textField pattern="#,##0.00">
+									<reportElement x="0" y="0" width="70" height="22" uuid="4ff6085b-d57d-41f7-89dd-480233429de2"/>
+									<textElement textAlignment="Right" verticalAlignment="Middle">
+										<font fontName="SansSerif" size="9"/>
+									</textElement>
+									<textFieldExpression><![CDATA[$V{Total_CGST}]]></textFieldExpression>
+								</textField>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:columnHeader style="Table_CH" height="20" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="70" height="20" uuid="52312250-3990-4aec-971f-4c5f191981b9"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="SansSerif" size="9"/>
+								</textElement>
+								<text><![CDATA[CGST]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="Table_TD" height="18">
+							<textField pattern="#,##0.00">
+								<reportElement x="0" y="0" width="70" height="18" uuid="cde018fc-3150-496b-bcb7-3a477650b95e"/>
+								<textElement textAlignment="Right" verticalAlignment="Middle">
+									<font fontName="SansSerif" size="9"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{CGST}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="127" uuid="e06efbeb-f3d2-4a82-8b6f-4ef2b4d7c5cc">
+						<property name="com.jaspersoft.studio.components.table.model.column.name" value="Column5"/>
+						<jr:groupFooter groupName="Group1">
+							<jr:cell style="Table_CH" height="22" rowSpan="1">
+								<textField pattern="#,##0.00">
+									<reportElement x="0" y="0" width="127" height="22" uuid="c27961df-768c-4024-a9c7-9123889ea54f"/>
+									<textElement textAlignment="Right" verticalAlignment="Middle">
+										<font fontName="SansSerif" size="9"/>
+									</textElement>
+									<textFieldExpression><![CDATA[$V{Total_GST}]]></textFieldExpression>
+								</textField>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:columnHeader style="Table_CH" height="20" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="127" height="20" uuid="77b8a75b-4f6c-42f6-9630-1a2ef7e17885"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="SansSerif" size="9"/>
+								</textElement>
+								<text><![CDATA[Total GST]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="Table_TD" height="18">
+							<textField pattern="#,##0.00">
+								<reportElement x="0" y="0" width="127" height="18" uuid="e2189bd7-fafc-4436-9d22-e8b475a14859"/>
+								<textElement textAlignment="Right" verticalAlignment="Middle">
+									<font fontName="SansSerif" size="9"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{TotalGST}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+				</jr:table>
+			</componentElement>
+			<rectangle>
+				<reportElement x="580" y="0" width="199" height="150" backcolor="#F2CCCB" uuid="2f912c0a-3028-46ff-b44d-42693c144e9e"/>
+				<graphicElement>
+					<pen lineStyle="Solid" lineColor="#360706"/>
+				</graphicElement>
+			</rectangle>
+			<staticText>
+				<reportElement x="580" y="41" width="86" height="21" uuid="a4922b6c-a457-49af-b39f-e2159d11afff"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<text><![CDATA[GST Payable:]]></text>
+			</staticText>
+			<textField pattern="#,##0.00#">
+				<reportElement x="666" y="41" width="113" height="21" uuid="87ce8b3d-fe02-4699-8b13-51a99fd8846c"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{ITaxAmount}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="580" y="106" width="200" height="19" uuid="6e98fef0-201a-4d7c-b06d-160e22cddd6f"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[GRAND TOTAL]]></text>
+			</staticText>
+			<textField pattern="#,##0.00#" isBlankWhenNull="false">
+				<reportElement x="580" y="125" width="199" height="23" uuid="3844c772-a610-4efd-89a7-92eb3690fdf8"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{ITotalAmount}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="580" y="62" width="86" height="21" uuid="4b6f3088-6ad6-4219-97f9-1603925820f4"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<text><![CDATA[Round Off:]]></text>
+			</staticText>
+			<textField pattern="#,##0.00">
+				<reportElement x="666" y="63" width="113" height="21" uuid="97e1b988-1f58-442d-bea5-7bc3fa2ee5c9"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{RoundOff}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="-2" y="153" width="781" height="105" uuid="cb79b8ae-4f8f-4b31-99d1-ef1242d07a24"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[TERMS AND CONDITIONS: E. &amp; O. E.
+01. GOODS ONCE WE SOLD CAN NOT BE TAKEN BACK OR EXCHANGED.                                           For SHREE MANGALA HOME WORLD PRODUCTS
+02. SUBJECT TO SHIVAMOGGA JURISIDICTION.                                                                                                                 Authorized Signatory
+03. PAYMENT STRICTLY BY DD/CHEQUE ONLY.
+04. COMPANY IS NOT LIABLE FOR CASH PAID WITHOUT PROPER NOTICE. 
+05. COMPANY NOT LIABLE FOR LEAKAGE /BREAKAGE AFTER DELIVARY TO TRANSPORT AND NO GUARANTY OR WARRANTY ON SOLD MATERIAL.
+06. PAYMENT SHOULD BE MADE WITH IN 10 TO 15 DAYS AFTER RECEIVED MATERIALS AFTER NOT PAID PER MONTH 3% INTREST WILL BE CHARGED.
+07. ANY COMPLAINTS ON EXCESS / SHORT RECEIPTS MUST BE INFORMED IMMEDIATELY(WITH IN THREE DAYS)
+08. PRICES ARE SUBJECT TO CHANGE WITH OUT NOTICE, PRICES RULING AT THE TIME OF DESPATCH WILL APPLY.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="580" y="20" width="86" height="21" uuid="56eee2de-394b-4d89-985f-a2da3c1cf0ef"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<text><![CDATA[Disc Amt :]]></text>
+			</staticText>
+			<textField pattern="#,##0.00">
+				<reportElement x="666" y="20" width="113" height="21" uuid="276dacdd-19d2-4602-9c68-feb471f8576b"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$V{Total_DiscAmt}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="420" y="4" width="160" height="19" uuid="f87313e4-769b-43cf-b273-d2dc447163eb"/>
+				<textFieldExpression><![CDATA["Total Items : " + $V{Total_Item_Count}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="420" y="24" width="160" height="19" uuid="d42daa6a-eea6-4e8b-b1f1-a73089d54df1"/>
+				<textFieldExpression><![CDATA["Total Qty : " +  $V{Total_Qty}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="580" y="84" width="86" height="21" uuid="4f1f50f1-19b8-4343-962e-192eb63d4bfd"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<text><![CDATA[CR/DR Note :]]></text>
+			</staticText>
+			<textField pattern="#,##0.00#">
+				<reportElement x="666" y="84" width="113" height="21" uuid="b4718c40-fe44-487e-b8a4-a542ae7bd851"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{CrDrNote}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="580" y="0" width="86" height="20" uuid="b4a1697c-aeee-4c6a-a8ad-8295ce34817f"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<text><![CDATA[Total]]></text>
+			</staticText>
+			<textField pattern="#,##0.00">
+				<reportElement x="666" y="0" width="113" height="20" uuid="5f20c089-7b06-47a7-91c7-576896685fee"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$V{Total_NetAmount}]]></textFieldExpression>
+			</textField>
+		</band>
+	</summary>
+</jasperReport>

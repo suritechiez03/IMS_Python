@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<div ng-controller="customerController" data-ng-init="">
+<div ng-controller="customerController" data-ng-init="GetCustomerList()">
 
       <md-tabs md-dynamic-height md-border-bottom md-selected="selectedIndex">
          <md-tab id="tab1" label="Manage Customer" ng-click="GetCustomerList()">

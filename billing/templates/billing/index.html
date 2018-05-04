@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div ng-controller="billingController" data-ng-init="init_invoice()">
+
+      <md-tabs md-dynamic-height md-border-bottom md-selected="selectedIndex">
+     <md-tab id="tab1" label="Invoice" ng-click="init_invoice()">
+             {% include "billing/invoice.html" %}
+         </md-tab>
+         <md-tab id="tab2" label="Payment" ng-click="">
+             {% include "billing/payment.html" %}
+         </md-tab>
+         <md-tab id="tab3" label="Invoice Details" ng-click="fetch_invoice_list_all()">
+             {% include "billing/invoiceList.html" %}
+         </md-tab>
+
+      </md-tabs>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,92 @@
+<div id="manageorders">
+<md-toolbar class="md-theme-light">
+                    <h3 class="md-toolbar-tools">
+                        <span> Enter Order Details </span>
+                    </h3>
+</md-toolbar>
+<md-content class="md-padding" flex>
+
+         <div flex-gt-xs="row">
+             <label>Order Date :</label>
+             <md-datepicker ng-model="Order.OrderDate" md-placeholder="Enter date" valid required></md-datepicker>
+             <md-input-container class="md-block" flex-gt-sm>
+                 <label>Customer Number </label>
+                 <md-select ng-model="Order.CustomerNumber" required>
+                   <md-option ng-repeat="option in CustomerList" value="// option.CustomerNumber //">
+                      <span style="color: blue"> // option.CustomerName //</span>
+                   </md-option>
+                 </md-select>
+             </md-input-container>
+         </div>
+         <div layout-gt-xs="row">
+            <md-input-container>
+            <label>Products</label>
+             <md-select ng-model="SelectedProduct"
+                data-md-container-class="selectdemoSelectHeader"
+                 >
+                 <md-optgroup label="products">
+                  <md-option ng-value="product" ng-repeat="product in ProductList| filter:searchTerm ">// product.ProductName //</md-option>
+                 </md-optgroup>
+              </md-select>
+            </md-input-container>
+              <md-input-container >
+               <div>
+                    <input ng-model="OrderQuantity"
+                           type="number"
+                           placeholder="Quantity"
+                           step="1"
+                           required> </div>
+              </md-input-container>
+             <md-input-container >
+               <div>
+                    <input ng-model="Order.Comments"
+                           type="text"
+                           placeholder="Quantity"
+                           maxlength="50"
+                           > </div>
+              </md-input-container>
+             <md-input-container >
+               <div>
+                    <md-button  class="md-raised md-primary"
+                                ng-click="AddtoCart(SelectedProduct, OrderQuantity);"
+                                ng-disabled="OrderQuantity <= '0'"
+                                > Add</md-button>
+               </div>
+             </md-input-container>
+         </div>
+         <div layout-gt-xs="row" >
+            <md-card flex>
+                <md-table-container>
+                    <table md-table md-row-select multiple ng-model="selected">
+                        <thead md-head>
+                            <tr md-row>
+                                <th></th>
+                                <th md-column md-order-by="nameToLower">Product Code</th>
+                                <th md-column md-numeric>Product Name</th>
+                                <th md-column md-numeric>Units</th>
+                                <th md-column md-numeric>Quantity</th>
+                            </tr>
+                        </thead>
+                        <tbody md-body>
+                            <tr md-row ng-repeat="item in selectedproductlist">
+                                <td md-cell><md-button class="md-primary" ng-click="removeProduct(item)"> Remove </md-button></td>
+                        <td md-cell> // item.ProductCode //</td>
+                        <td md-cell> // item.ProductName //</td>
+                        <td md-cell> // item.Units //</td>
+                        <td md-cell>//  item.orderQuantity //</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </md-table-container>
+                        <div layout-gt-xs="row">
+                            <md-button  class="md-raised md-primary" ng-click="Save_Order();"
+                                        > Save Order </md-button>
+                            <md-button  class="md-raised md-primary" ng-click="gotoInvoice();"
+                                        > Procced for invoice </md-button>
+                        </div>
+            </md-card>
+         </div>
+
+</md-content>
+
+</div>

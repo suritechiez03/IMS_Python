@@ -21,6 +21,15 @@
                                             </md-option>
                                           </md-select>
                                     </md-input-container>
+                                    <md-input-container ng-show="Customer.CustomerType === 'Authorizer' || Customer.CustomerType === 'Partner'" flex>
+                                          <label>// Customer.CustomerType //</label>
+                                          <md-select ng-model="Customer.ReferenceCustomerNumber">
+                                            <md-option><em>None</em></md-option>
+                                           <md-option ng-repeat="item in CustomerList" ng-value="item.CustomerNumber">
+                                              // item.CustomerName // ( // item.CustomerType // )
+                                            </md-option>
+                                          </md-select>
+                                    </md-input-container>
                                 </div>
                                 <div layout-gt-sm="row">
                                     <md-input-container class="md-block" flex-gt-sm>

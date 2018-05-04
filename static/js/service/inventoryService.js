@@ -2,7 +2,7 @@ imsappctrl.factory('inventoryService',['$rootScope','$http','alertService',funct
    var service={};
 
         service.getCategoryList= function(callback){
-                           $http.get('api/get_category_list')
+                           $http.get('/inventory/api/get_category_list')
                            .then(function(response){
                                     callback(response.data);
                            },function(response){
@@ -11,7 +11,7 @@ imsappctrl.factory('inventoryService',['$rootScope','$http','alertService',funct
 
               };
         service.getProductList= function(callback){
-                           $http.get('api/get_product_list')
+                           $http.get('/inventory/api/get_product_list')
                            .then(function(response){
                                     callback(response.data);
                            },function(response){
@@ -20,7 +20,7 @@ imsappctrl.factory('inventoryService',['$rootScope','$http','alertService',funct
 
               };
         service.SaveOrUpdateCategory=function(data){
-                          $http.post('api/save_category',data , { headers: { 'contentType':'application/json'}})
+                          $http.post('/inventory/api/save_category',data , { headers: { 'contentType':'application/json'}})
                           .then(function(response){
                                 alertService.showAlert(null,'Info',response.data,'OK');
                           },function(response){
@@ -28,7 +28,7 @@ imsappctrl.factory('inventoryService',['$rootScope','$http','alertService',funct
               });
           };
         service.SaveOrUpdateProduct=function(data){
-                          $http.post('api/save_product',data , { headers: { 'contentType':'application/json'}})
+                          $http.post('/inventory/api/save_product',data , { headers: { 'contentType':'application/json'}})
                           .then(function(response){
                                 alertService.showAlert(null,'Info',response.data,'OK');
                           },function(response){

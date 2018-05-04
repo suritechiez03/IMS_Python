@@ -1,0 +1,43 @@
+<div style="visibility: hidden">
+<div class="md-dialog-container" id="ProductDialog" >
+    <md-dialog aria-label="Select Product" layout-padding>
+        <md-dialog-content>
+    <md-input-container flex>
+        <input type="text" ng-model="searchproduct" placeholder="Search"/>
+    </md-input-container>
+    <md-table-container>
+          <table md-table md-row-select multiple ng-model="SelectedProduct" >
+                  <thead md-head>
+                  <tr md-row>
+                       <th></th>
+                    <th md-column md-order-by="ProductCode">Product Code</th>
+                    <th md-column md-order-by="ProductName">Product Name</th>
+                    <th md-column md-order-by="CategoryCode">Category</th>
+                    <th md-column md-order-by="Units">Units</th>
+                    <th md-column md-order-by="MoQ">MoQ</th>
+                    <th md-column md-order-by="Color">Color</th>
+                    <th md-column md-order-by="HsnSacCode">HsnSacCode</th>
+                    <th md-column >Image</th>
+                  </tr>
+                  </thead>
+                  <tbody md-body>
+                  <tr md-row md-select="item" ng-repeat="item in ProductList | filter:searchproduct">
+                      <td md-cell>// item.ProductCode //</td>
+                      <td md-cell>// item.ProductName //</td>
+                      <td md-cell>// item.CategoryCode //</td>
+                      <td md-cell>// item.Units //</td>
+                      <td md-cell>// item.MoQ //</td>
+                      <td md-cell>// item.Color //</td>
+                      <td md-cell>// item.HsnSacCode //</td>
+                      <td md-cell><img ng-src="// item.Image //" style="max-height: 35px; max-width: 35px;" /></td>
+                  </tr>
+                  </tbody>
+              </table>
+              </md-table-container>
+            </md-dialog-content>
+            <md-dialog-actions>
+                <md-button type="button" ng-click="AddToCart()">Add to Cart(// SelectedProduct.length // items) </md-button>
+            </md-dialog-actions>
+</md-dialog>
+</div>
+</div>

@@ -1,0 +1,68 @@
+<div id="orderList">
+<md-toolbar class="md-theme-light">
+                            <h2 class="md-toolbar-tools">
+                                <span>Order List</span>
+                            </h2>
+</md-toolbar>
+ <div>
+     <md-input-container flex>
+         <label>Search Order</label>
+         <input type="text" ng-model="ordersearch"/>
+     </md-input-container>
+     <md-table-container>
+         <table md-table md-row-select multiple ng-model="selected">
+             <thead md-head>
+             <tr md-row>
+                 <th></th>
+                 <th></th>
+                 <th md-column md-column md-order-by="nameToLower">Order Number </th>
+                 <th md-column md-column md-order-by="nameToLower">Order Date </th>
+                 <th md-column md-column md-order-by="nameToLower">Order For </th>
+                 <th md-column md-column md-order-by="nameToLower">Customer Number </th>
+                 <th md-column md-column md-order-by="nameToLower">Status </th>
+                 <th md-column md-column md-order-by="nameToLower">Comments </th>
+             </tr>
+             </thead>
+             <tbody md-body>
+             <tr md-row ng-repeat-start="item in OrderList | filter : ordersearch">
+                      <td md-cell>
+                         <button ng-if="item.expanded" ng-click="item.expanded = false">-</button>
+                         <button ng-if="!item.expanded" ng-click="item.expanded = true">+</button>
+                      </td>
+                     <td md-cell><md-button class="md-primary" ng-click="showOrderDetails(item)"> Edit</md-button></td>
+                     <td md-cell>// item.GeneratedOrderNumber //</td>
+                     <td md-cell>// item.OrderRaisedDate //</td>
+                     <td md-cell>// item.OrderFor //</td>
+                     <td md-cell>// item.CustomerNumber //</td>
+                     <td md-cell>// item.OrderStatus //</td>
+                     <td md-cell>// item.Comments //</td>
+
+             </tr>
+             <tr ng-repeat-end="" ng-if="item.expanded" >
+                      <td md-cell></td>
+                      <td colspan="6" md-cell >
+                      <md-table-container>
+                                    <table md-table>
+                                        <thead md-head>
+                                            <tr md-row>
+                                                <th md-column md-order-by="productcode">Product Code</th>
+                                                <th md-column md-numeric>Order Quantity</th>
+                                                <th md-column md-numeric>Dispatched Quantity</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody md-body>
+                                            <tr md-row ng-repeat="items in item.OrderDetails">
+                                                <td md-cell>// items.ProductDetails[0].ProductCode //:// items.ProductDetails[0].ProductName //</td>
+                                                <td md-cell>// items.OrderQty //</td>
+                                                <td md-cell>// items.DispatchQty //</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                      </md-table-container>
+                 </td>
+             </tr>
+             </tbody>
+         </table>
+     </md-table-container>
+ </div>
+</div>

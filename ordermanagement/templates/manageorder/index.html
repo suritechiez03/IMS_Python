@@ -1,17 +1,14 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<div ng-controller="orderController" data-ng-init="">
+<div ng-controller="ordermgmtController" data-ng-init="init_order_management()">
 
       <md-tabs md-dynamic-height md-border-bottom md-selected="selectedIndex">
-         <md-tab id="tab1" label="Take Order" ng-click="init_order_management()">
-             {% include "inventory/productList.html" %}
+         <md-tab id="tab1" label="New Order" ng-click="init_order_management()">
+             {% include "manageorder/newOrder.html" %}
          </md-tab>
-         <md-tab id="tab2" label="// FormCaption //" ng-click="">
-             {% include "inventory/addUpdProduct.html" %}
-         </md-tab>
-          <md-tab id="tab3" label="Product Category" ng-click="">
-             {% include "inventory/addUpdProductCategory.html" %}
+         <md-tab id="tab2" label="Order List" ng-click="get_order_list()">
+             {% include "manageorder/orderList.html" %}
          </md-tab>
       </md-tabs>
 

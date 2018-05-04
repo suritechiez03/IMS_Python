@@ -7,6 +7,7 @@ from django.contrib.auth import logout
 from . import models
 # Create your views here.
 
+
 def get_AppSettings(request):
 
         for item in models.AppSetting.objects.all().values():

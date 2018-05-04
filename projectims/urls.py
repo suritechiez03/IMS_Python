@@ -21,6 +21,7 @@ urlpatterns = [
     url('admin/', admin.site.urls),
     url('customer/', include('customer.urls')),
     url('mod_auth/', include('mod_auth.urls')),
-    url('inventory/', include('inventory.urls'))
-
+    url('inventory/', include('inventory.urls')),
+    url('order/', include('ordermanagement.urls')),
+    url('billing/', include('billing.urls'))
 ]

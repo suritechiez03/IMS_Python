@@ -1,0 +1,32 @@
+<div style="visibility: hidden">
+<div class="md-dialog-container" id="InvoiceList" >
+    <md-dialog aria-label="Select Invoice" layout-padding>
+        <md-dialog-content>
+    <md-input-container flex>
+        <input type="text" ng-model="searchInvoice" placeholder="Search"/>
+    </md-input-container>
+    <md-table-container>
+          <table md-table md-row-select ng-model="SelectedInvoice" >
+                  <thead md-head>
+                  <tr md-row>
+                    <th md-column md-order-by="InvoiceNumber">Invoice Number</th>
+                    <th md-column md-order-by="ProductName">Invoice Date</th>
+                    <th md-column md-order-by="CategoryCode">Customer Number</th>
+                  </tr>
+                  </thead>
+                  <tbody md-body>
+                  <tr md-row md-select="item" ng-repeat="item in invoice_list | filter:searchInvoice">
+                      <td md-cell>// item.InvoiceNumber //</td>
+                      <td md-cell>// item.InvoiceDate //</td>
+                      <td md-cell>// item.CustomerNumber //</td>
+                  </tr>
+                  </tbody>
+              </table>
+              </md-table-container>
+            </md-dialog-content>
+            <md-dialog-actions>
+                    <md-button type="button" ng-click="load_InvoiceDetails()"> Procced </md-button>
+            </md-dialog-actions>
+</md-dialog>
+</div>
+</div>

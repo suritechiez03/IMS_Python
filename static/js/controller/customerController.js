@@ -1,4 +1,4 @@
-imsappctrl.controller('customerController',['$location','$scope','initService','customerService',function($location,$scope,initService,customerService){
+imsappctrl.controller('customerController',['$location','$scope','initService','customerService','alertService',function($location,$scope,initService,customerService,alertService){
 
     $scope.selectedIndex=0;
     $scope.SAVE_UPDATE_FLAG = 'SAVE';
@@ -26,17 +26,25 @@ imsappctrl.controller('customerController',['$location','$scope','initService','
     }
     $scope.SaveOrUpdate=function(){
 
-          customerService.saveorupdate($scope.Customer);
-          $scope.GetCustomerList();
-          $scope.SAVE_UPDATE_FLAG='SAVE'
-          $scope.selectedIndex=0;
-
-          $scope.Clear();
+          customerService.saveorupdate($scope.Customer,function(response){
+           alertService.ShowAlertWait('Info',response.data,'OK',
+           function(res){
+              if (res === "OK"){
+                 $scope.GetCustomerList();
+                 $scope.SAVE_UPDATE_FLAG='SAVE'
+                 $scope.selectedIndex=0;
+                 $scope.Clear();
+                 window.location.reload();
+              }
+               window.location.reload();
+           }
+           );
+         });
 
     };
     $scope.GetCustomerList=function(){
           customerService.getCustomerList(function(response){
-          $scope.CustomerList = response;
+               $scope.CustomerList = response;
           });
     };
     $scope.editCustomer= function(data){
@@ -50,6 +58,7 @@ imsappctrl.controller('customerController',['$location','$scope','initService','
           $scope.Customer.PanNumber = data.PanNumber;
           $scope.Customer.CstNumber = data.CstNumber;
           $scope.Customer.GstNumber = data.GstNumber;
+          $scope.Customer.ReferenceCustomerNumber = data.ReferenceCustomerNumber;
           $scope.Customer.CompanyWebsite = data.customeraddress__WebSite;
           $scope.Customer.CompanyEmail = data.customeraddress__Email;
           $scope.Customer.PhoneNumber = data.customeraddress__PhoneNumber;
