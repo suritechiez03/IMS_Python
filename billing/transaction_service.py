@@ -77,13 +77,6 @@ class Transaction_Service:
         order_data["CustomerNumber"] = invoice_data["Customer"]["CustomerNumber"]
         return OrderService.save_order(self, json.dumps(order_data), "")
 
-    @transaction.atomic
-    def process_payment(self, payment_data):
-        trans_obj = models.Transaction();
-        trans_obj = payment_data[""]
-        trans_obj.save()
-
-
     def get_invoice_details(self, invoice_no):
         invoice = models.InvoiceDetails.objects.filter(InvoiceNumber=invoice_no).all().values()
         return invoice
