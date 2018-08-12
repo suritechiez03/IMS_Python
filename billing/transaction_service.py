@@ -1,7 +1,7 @@
 import datetime
 import json
 import os
-from pyjasper.jasperpy import JasperPy
+from pyreportjasper import JasperPy
 from . import models
 from django.db import transaction
 from ordermanagement.order_service import OrderService

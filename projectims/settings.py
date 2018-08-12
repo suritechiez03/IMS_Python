@@ -42,7 +42,6 @@ INSTALLED_APPS = [
     'inventory.apps.InventoryConfig',
     'ordermanagement.apps.OrderManagementConfig',
     'billing.apps.BillingConfig'
-
 ]
 
 MIDDLEWARE = [
@@ -56,6 +55,8 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'projectims.urls'
+
+DOJ_BUILDWAR_JAVA_LIBS =['jars/jython-standalone-2.7-b2.jar']
 
 TEMPLATES = [
     {
