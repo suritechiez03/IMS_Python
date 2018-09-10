@@ -15,6 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.conf.urls import url, include
+from django.conf.urls.static import static
 from . import views
 urlpatterns = [
     url(r'^$', views.index, name='index'),
@@ -23,5 +24,6 @@ urlpatterns = [
     url('mod_auth/', include('mod_auth.urls')),
     url('inventory/', include('inventory.urls')),
     url('order/', include('ordermanagement.urls')),
-    url('billing/', include('billing.urls'))
+    url('billing/', include('billing.urls')),
+    url(r'^report_builder/', include('report_builder.urls'))
 ]

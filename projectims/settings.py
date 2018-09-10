@@ -37,11 +37,14 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
     'customer.apps.CustomerConfig',
     'mod_auth.apps.ModAuthConfig',
     'inventory.apps.InventoryConfig',
     'ordermanagement.apps.OrderManagementConfig',
-    'billing.apps.BillingConfig'
+    'billing.apps.BillingConfig',
+    'rest_framework',
+    'report_builder'
 ]
 
 MIDDLEWARE = [
@@ -51,7 +54,8 @@ MIDDLEWARE = [
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
-    'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django.middleware.clickjacking.XFrameOptionsMiddleware'
+
 ]
 
 ROOT_URLCONF = 'projectims.urls'
@@ -69,11 +73,21 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'django.template.context_processors.static'
             ],
         },
     },
 ]
 
+REST_FRAMEWORK = {
+'DEFAULT_AUTHENTICATION_CLASSES': (
+'rest_framework.authentication.SessionAuthentication',
+'rest_framework.authentication.TokenAuthentication',
+),
+'DEFAULT_PERMISSION_CLASSES': [
+'rest_framework.permissions.IsAuthenticatedOrReadOnly'
+]
+}
 WSGI_APPLICATION = 'projectims.wsgi.application'
 
 
